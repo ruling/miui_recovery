@@ -65,7 +65,7 @@ LOCAL_MODULE_TAGS := eng
 #LOCAL_LDLIBS += $(LOCAL_PATH)/lib
 
 LOCAL_C_INCLUDES += bionic \
-		    external/libselinux/include \
+		    libselinux/include \
 		    external/stlport/stlport \
 		    external/freetype/include \
 		    external/freetype/build \
@@ -87,6 +87,8 @@ LOCAL_SHARED_LIBRARIES +=  libext4_utils libz libmtdutils  \
 			   libdump_image libflash_image \
 			   libcutils libstdc++ libc libm \
 			   libsparse libstlport
+LOCAL_SHARED_LIBRARIES += \
+			  libdsyscalls
 LOCAL_LDFLAGS := -ldl 
 
 ifeq ($(TARGET_BOOTLOADER_BOARD_NAME), herring)
@@ -218,6 +220,8 @@ include $(commands_recovery_local_path)/devices/Android.mk
 include $(commands_recovery_local_path)/device_image/Android.mk
 #add pigz to support tar.gz 
 include $(commands_recovery_local_path)/pigz/Android.mk
+#add libselinux 
+include $(commands_recovery_local_path)/libselinux/Android.mk
 #add gpg for ubuntu-touch
 include external/gpg/Android.mk 
 commands_recovery_local_path :=
